@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,6 @@ public class Usuario implements Serializable{
 	private Date dataCriacao;
 	private Date ultimoAcesso;
 	
-	@ManyToMany(mappedBy = "permissoes")
+	@ManyToMany
 	private Set<Perfil> perfis;
 }

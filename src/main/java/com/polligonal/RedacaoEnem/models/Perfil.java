@@ -3,10 +3,13 @@ package com.polligonal.RedacaoEnem.models;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -23,9 +26,9 @@ public class Perfil implements Serializable{
 	private Long id;
 	private String nome;
 	
-	@ManyToMany(mappedBy = "perfis")
+	@ManyToMany
 	private Set<Permissao> permissoes;
 	
-	@ManyToMany(mappedBy = "perfis")
+	@ManyToMany
 	private Set<Usuario> usuarios;
 }
