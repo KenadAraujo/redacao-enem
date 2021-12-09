@@ -1,7 +1,5 @@
 package com.polligonal.RedacaoEnem.dto;
 
-import java.io.Serializable;
-
 import com.polligonal.RedacaoEnem.models.Usuario;
 
 import lombok.Data;

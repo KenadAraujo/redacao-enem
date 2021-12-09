@@ -26,6 +26,6 @@ public class Permissao implements Serializable {
 	private Long id;
 	private String url;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "permissoes")
 	private Set<Perfil> perfis;
 }

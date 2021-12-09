@@ -3,7 +3,6 @@ package com.polligonal.RedacaoEnem.models;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,13 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table
 public class Perfil implements Serializable{
 
 	private static final long serialVersionUID = 5086048056432795799L;
@@ -27,8 +24,11 @@ public class Perfil implements Serializable{
 	private String nome;
 	
 	@ManyToMany
+	@JoinTable(name = "perfil_permissao",
+	    joinColumns = { @JoinColumn(name = "perfil_id") },
+	    inverseJoinColumns = { @JoinColumn(name = "permissao_id") })
 	private Set<Permissao> permissoes;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "perfis")
 	private Set<Usuario> usuarios;
 }
