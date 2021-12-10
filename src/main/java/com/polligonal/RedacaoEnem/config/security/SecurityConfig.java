@@ -1,0 +1,38 @@
+package com.polligonal.RedacaoEnem.config.security;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
+	/**
+	 * Método que tem as configurações de autenticação
+	 */
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	}
+	/**
+	 * Método que tem as configurações de autorização
+	 */
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests()
+			.antMatchers(HttpMethod.GET,"/hello").permitAll()
+			.antMatchers(HttpMethod.POST,"/usuario").permitAll();
+	}
+	
+	/**
+	 * Configurações de recursos estáticos
+	 * Ex. Javascript, CSS, imagens, templates
+	 */
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	}
+}
