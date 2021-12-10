@@ -11,11 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import lombok.Data;
 
 @Data
 @Entity
-public class Perfil implements Serializable{
+public class Perfil implements Serializable,GrantedAuthority{
 
 	private static final long serialVersionUID = 5086048056432795799L;
 	@Id
@@ -31,4 +33,9 @@ public class Perfil implements Serializable{
 	
 	@ManyToMany(mappedBy = "perfis")
 	private Set<Usuario> usuarios;
+
+	@Override
+	public String getAuthority() {
+		return this.nome;
+	}
 }
