@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lombok.Data;
 
@@ -39,6 +40,10 @@ public class Usuario implements Serializable,UserDetails{
 	    joinColumns = { @JoinColumn(name = "usuario_id") },
 	    inverseJoinColumns = { @JoinColumn(name = "perfil_id") })
 	private Set<Perfil> perfis;
+	
+	public void setSenha(String senha) {
+		this.senha = new BCryptPasswordEncoder().encode(senha);
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
