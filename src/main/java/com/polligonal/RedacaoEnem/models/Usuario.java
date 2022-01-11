@@ -32,7 +32,7 @@ public class Usuario implements Serializable,UserDetails{
 	private String nome;
 	private String email;
 	private String senha;
-	private Date dataCriacao;
+	private Date dataCriacao = new Date();
 	private Date ultimoAcesso;
 	
 	@ManyToMany

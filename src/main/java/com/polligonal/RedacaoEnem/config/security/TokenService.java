@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.polligonal.RedacaoEnem.models.Usuario;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -31,6 +32,20 @@ public class TokenService {
 				.setExpiration(dataExpiracao)//Data da expiracao do token;
 				.signWith(SignatureAlgorithm.HS256, secret)//Algoritmo de criptografia;
 				.compact();
+	}
+
+	public boolean isTokenValido(String token) {
+		try {
+			Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+			return true;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+
+	public Long getIdUsuario(String token) {
+		Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+		return Long.valueOf(claims.getSubject());
 	}
 
 }
